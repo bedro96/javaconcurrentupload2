@@ -18,8 +18,8 @@ java -jar target/blob-problem-0.1-jar-with-dependencies.jar
 ```
 ## What has been changed from the original file.
 
-1. upload() method for BlobClient class has been modified to aquire lease for the blob.
-Some exceptions are given since the there will be multiple threads trying to write on the same blob.
+1. upload() method for BlobClient class has been modified to aquire a etag for the blob.
+One exception, ConditionNotMet, is given since the only last thread will have etags unchanged but other threads will. 
 Only one of these thread will be successful writing the whole block, and others will loop again.
 2. UPLOAD_BYTES and NUM_OF_THREAD variables in Config.java has been increased.
 3. CONNECTION_STRING variable in Config.java is reading from system variable. 
